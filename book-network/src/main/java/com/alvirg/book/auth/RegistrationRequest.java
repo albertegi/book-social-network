@@ -1,7 +1,6 @@
 package com.alvirg.book.auth;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -10,7 +9,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 
 @Getter
 @Setter

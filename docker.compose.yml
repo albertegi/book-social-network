@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: postgres-sql-bsn
-    image: postgres
+    image: postgres:17
     environment:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
@@ -10,7 +10,7 @@ services:
     volumes:
       - postgres:/data/postgres
     ports:
-      - 5433:5433
+      - 7000:5432
     networks:
       - spring-demo
     restart: unless-stopped
