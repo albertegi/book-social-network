@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,6 +12,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "token")
+@EntityListeners(AuditingEntityListener.class)
 public class Token {
 
     @Id
@@ -20,7 +22,7 @@ public class Token {
     private Integer id;
     private String token;
     private LocalDateTime createdAt;
-    private LocalDate expiresAt;
+    private LocalDateTime expiresAt;
     private LocalDateTime validatedAt;
 
     @ManyToOne

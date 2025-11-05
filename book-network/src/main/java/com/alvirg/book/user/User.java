@@ -1,10 +1,11 @@
 package com.alvirg.book.user;
 
+import com.alvirg.book.book.Book;
+import com.alvirg.book.history.BookTransactionHistory;
 import com.alvirg.book.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
@@ -39,10 +40,26 @@ public class User implements UserDetails, Principal {
     private boolean accountLocked;
     private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
-    private List<Role> roles;
+//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//    private List<Role> roles;
 
     // private List<Roles> roles;
+    // FetchType.EAGER: When I fetch the user, I want to eagerly fetch the roles
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
+
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -59,6 +76,9 @@ public class User implements UserDetails, Principal {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.roles == null) {
+            return List.of();
+        }
         return this.roles
                 .stream()
                 .map(r-> new SimpleGrantedAuthority(r.getName()))
@@ -95,7 +115,7 @@ public class User implements UserDetails, Principal {
         return enabled;
     }
 
-    private String fullName(){
+    public String fullName(){
         return firstname + " " + lastname;
     }
 }

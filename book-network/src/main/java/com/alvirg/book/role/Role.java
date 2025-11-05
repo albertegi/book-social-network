@@ -7,9 +7,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Role implements UserDetails, Principal {
+public class Role{
 
     @Id
     @GeneratedValue
@@ -33,13 +31,10 @@ public class Role implements UserDetails, Principal {
     private List<User> users;
 
 
-
-
-
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDate createDate;
+
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDate lastModifiedDate;
