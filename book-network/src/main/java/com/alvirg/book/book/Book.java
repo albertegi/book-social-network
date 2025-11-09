@@ -1,7 +1,7 @@
 package com.alvirg.book.book;
 
 import com.alvirg.book.common.BaseEntity;
-import com.alvirg.book.feedback.FeedBack;
+import com.alvirg.book.feedback.Feedback;
 import com.alvirg.book.history.BookTransactionHistory;
 import com.alvirg.book.user.User;
 import jakarta.persistence.*;
@@ -10,13 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.annotation.Transient;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -36,14 +31,31 @@ public class Book extends BaseEntity {
     private boolean shareable;
 
     @ManyToOne
-    @JoinColumn(name = "ownder_id")
+    @JoinColumn(name = "owner_id")
     private User owner;
 
     @OneToMany(mappedBy = "book")
-    private List<FeedBack> feedBacks;
+    private List<Feedback> feedbacks;
 
     @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> histories;
+
+    @Transient
+    public double getRate(){
+        if(feedbacks == null || feedbacks.isEmpty()){
+            return  0.0;
+        }
+
+        var rate = this.feedbacks.stream()
+                .mapToDouble(Feedback::getNote)
+                .average()
+                .orElse(0.0);
+
+        // 3.23 --> 3.0 ||3.62 --> 4.0
+        double roundedRate = Math.round(rate * 10.0)/10.0;
+        return roundedRate;
+
+    }
 
 
 }
