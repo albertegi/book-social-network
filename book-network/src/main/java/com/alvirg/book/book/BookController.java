@@ -120,7 +120,8 @@ public class BookController {
     public ResponseEntity<?> uploadBookCoverPicture(
             @PathVariable("book-id") Integer bookId,
             @Parameter()
-            @RequestPart("file") MultipartFile file,
+            @RequestPart("file")
+            MultipartFile file,
             Authentication connectedUser
     ){
         service.uploadBookCoverPicture(file, connectedUser, bookId);

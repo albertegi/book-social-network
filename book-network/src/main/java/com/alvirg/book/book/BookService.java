@@ -59,6 +59,7 @@ public class BookService {
                 books.getNumber(),
                 books.getSize(),
                 books.getTotalElements(),
+                books.getTotalPages(),
                 books.isFirst(),
                 books.isLast()
 
@@ -81,6 +82,7 @@ public class BookService {
                 books.getNumber(),
                 books.getSize(),
                 books.getTotalElements(),
+                books.getTotalPages(),
                 books.isFirst(),
                 books.isLast()
 
@@ -101,6 +103,7 @@ public class BookService {
                 allBorrowedBooks.getNumber(),
                 allBorrowedBooks.getSize(),
                 allBorrowedBooks.getTotalElements(),
+                allBorrowedBooks.getTotalPages(),
                 allBorrowedBooks.isFirst(),
                 allBorrowedBooks.isLast()
 
@@ -121,6 +124,7 @@ public class BookService {
                 allBorrowedBooks.getNumber(),
                 allBorrowedBooks.getSize(),
                 allBorrowedBooks.getTotalElements(),
+                allBorrowedBooks.getTotalPages(),
                 allBorrowedBooks.isFirst(),
                 allBorrowedBooks.isLast()
 

@@ -9,7 +9,7 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
     @Query(
             """
                 SELECT feedback
-                from Feedback AS feedback
+                from Feedback feedback
                 WHERE feedback.book.id = :bookId
                 """
     )

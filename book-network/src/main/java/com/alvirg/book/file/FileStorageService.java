@@ -48,7 +48,7 @@ public class FileStorageService {
 
         // extract file extension
         final String fileExtension = getFileExtension(sourceFile.getOriginalFilename());
-        // ./upload/users/1/235352533
+        // ./upload/users/1/235352533.jpg
         String targetFilePath = fileUploadPath + File.separator + System.currentTimeMillis() + "." + fileExtension;
         Path targetPath = Paths.get(targetFilePath);
         try {
