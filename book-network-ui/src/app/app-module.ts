@@ -3,19 +3,26 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import {HttpClient, HttpClientModule, provideHttpClient} from '@angular/common/http';
+import { Login } from './pages/login/login';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    App
+    App,
+    Login
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    HttpClient
   ],
   bootstrap: [App]
 })
