@@ -35,11 +35,11 @@ public class FileStorageService {
     private String uploadFile(
             @NonNull MultipartFile sourceFile,
             @NonNull String fileUploadSubPath) {
-        final String finalUploadPath = fileUploadPath + File.separator + fileUploadSubPath;
+        final String finalUploadPath = fileUploadPath + File.separator + fileUploadSubPath;  // e.g. ./upload/users/1
         File targetFolder = new File(finalUploadPath);
         // perform a check if we already have this folder. Create it if it doesn't exist
         if(!targetFolder.exists()){
-            boolean folderCreated = targetFolder.mkdirs();
+            boolean folderCreated = targetFolder.mkdirs(); // create the main folder and all sub-folders
             if(!folderCreated){
                 log.warn("Failed to create the target folder");
                 return null;
@@ -48,6 +48,7 @@ public class FileStorageService {
 
         // extract file extension
         final String fileExtension = getFileExtension(sourceFile.getOriginalFilename());
+
         // ./upload/users/1/235352533.jpg
         String targetFilePath = fileUploadPath + File.separator + System.currentTimeMillis() + "." + fileExtension;
         Path targetPath = Paths.get(targetFilePath);
@@ -67,7 +68,7 @@ public class FileStorageService {
         }
         // because the file name is something.jpg --> we need to get the dot.
         int lastDotIndex = fileName.lastIndexOf(".");
-        if(lastDotIndex == -1){
+        if(lastDotIndex == -1){ // which means it does not have an extension
             return "";
         }
         return fileName.substring(lastDotIndex + 1).toLowerCase();

@@ -31,7 +31,6 @@ public class BookMapper {
                 .owner(book.getOwner().fullName())
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
-                // implement this later
                 .cover(FileUtil.readFileFromLocation(book.getBookCover()))
                 .build();
     }

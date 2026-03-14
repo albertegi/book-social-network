@@ -29,7 +29,7 @@ public class FeedbackService {
         Book book = bookRepository.findById(feedbackRequest.bookId())
                 .orElseThrow(()-> new EntityNotFoundException("No book found with ID:: " + feedbackRequest.bookId() ));
 
-        // check if the book is not archived or not shareable
+        // check if the book is archived or not shareable
         if(book.isArchived() || !book.isShareable()){
             throw new OperationNotPermittedException("You cannot give feedback for an archived or non shareable book");
         }
@@ -52,7 +52,6 @@ public class FeedbackService {
         List<FeedbackResponse> feedbackResponses = feedbacks.stream()
                 .map(f -> feedbackMapper.toFeedbackResponse(f, user.getId()))
                 .toList();
-
 
         return new PageResponse<>(
                 feedbackResponses,

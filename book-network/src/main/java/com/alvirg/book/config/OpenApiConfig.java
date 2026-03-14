@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         info = @Info(
                 contact = @Contact(
                         name = "Albert",
-                        email = "contact@creekscholar.com",
+                        email = "contact@creekscholarcoding.com",
                         url = "https://creekscholarcoding.com/courses"
                 ),
                 description = "OpenApi documentation for Spring security",
@@ -35,7 +35,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 @Server(
                         description = "Local PROD",
-                        url = "http://creekscholarcoding.com/courses"
+                        url = "https://creekscholarcoding.com/courses"
                 )
 
         },

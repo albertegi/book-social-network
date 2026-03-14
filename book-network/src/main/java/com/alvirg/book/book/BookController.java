@@ -119,9 +119,8 @@ public class BookController {
     @PostMapping(value = "/cover/{book-id}", consumes = "multipart/form-data")
     public ResponseEntity<?> uploadBookCoverPicture(
             @PathVariable("book-id") Integer bookId,
-            @Parameter()
-            @RequestPart("file")
-            MultipartFile file,
+            @Parameter()// for swagger
+            @RequestPart("file") MultipartFile file,
             Authentication connectedUser
     ){
         service.uploadBookCoverPicture(file, connectedUser, bookId);
