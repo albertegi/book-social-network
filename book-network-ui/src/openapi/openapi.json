@@ -7,7 +7,7 @@
     "contact": {
       "name": "Albert",
       "url": "https://creekscholarcoding.com/courses",
-      "email": "contact@creekscholar.com"
+      "email": "contact@creekscholarcoding.com"
     },
     "license": {
       "name": "License name",
@@ -21,7 +21,7 @@
       "description": "Local ENV"
     },
     {
-      "url": "http://creekscholarcoding.com/courses",
+      "url": "https://creekscholarcoding.com/courses",
       "description": "Local PROD"
     }
   ],
