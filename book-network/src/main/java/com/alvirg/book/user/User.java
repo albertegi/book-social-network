@@ -46,7 +46,7 @@ public class User implements UserDetails, Principal {
     // private List<Roles> roles;
     // FetchType.EAGER: When I fetch the user, I want to eagerly fetch the roles
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
