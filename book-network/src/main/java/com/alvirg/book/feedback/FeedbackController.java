@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class FeedbackController {
     private final FeedbackService feedbackService;
 
+    @PostMapping
     public ResponseEntity<Integer> saveFeedBack(
             @Valid @RequestBody FeedbackRequest feedbackRequest,
             Authentication connectedUser

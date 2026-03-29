@@ -11,6 +11,8 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { findAllFeedbackByBook } from '../fn/feedback/find-all-feedback-by-book';
 import { FindAllFeedbackByBook$Params } from '../fn/feedback/find-all-feedback-by-book';
+import { saveFeedback } from '../fn/feedback/save-feedback';
+import { SaveFeedback$Params } from '../fn/feedback/save-feedback';
 import { PageResponseFeedbackResponse } from '../models/page-response-feedback-response';
 
 @Injectable({ providedIn: 'root' })
@@ -19,8 +21,21 @@ export class FeedbackService extends BaseService {
     super(config, http);
   }
 
+  /** Path part for operation `saveFeedback()` */
+  static readonly SaveFeedbackPath = '/feedbacks';
+
   /** Path part for operation `findAllFeedbackByBook()` */
   static readonly FindAllFeedbackByBookPath = '/feedbacks/book/{book-id}';
+
+  saveFeedback$Response(params: SaveFeedback$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return saveFeedback(this.http, this.rootUrl, params, context);
+  }
+
+  saveFeedback(params: SaveFeedback$Params, context?: HttpContext): Observable<number> {
+    return this.saveFeedback$Response(params, context).pipe(
+      map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

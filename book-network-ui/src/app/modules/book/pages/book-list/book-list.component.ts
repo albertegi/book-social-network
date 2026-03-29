@@ -12,7 +12,7 @@ import {BookResponse} from "../../../../services/models/book-response";
 export class BookListComponent implements OnInit{
   bookResponse: PageResponseBookResponse = {};
   page = 0;
-  size = 2;
+  size = 3;
   message: string = '';
   level: string = 'success';
 
@@ -67,7 +67,6 @@ export class BookListComponent implements OnInit{
 
   }
 
-
   get isLastPage():boolean {
     return this.page == this.bookResponse.totalPages as number - 1;
   }
@@ -86,6 +85,6 @@ export class BookListComponent implements OnInit{
         this.level = 'error'
         this.message = err.error.error;
       }
-    })
+    });
   }
 }

@@ -7,9 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MenuComponent implements OnInit{
 
-  logout() {
 
-  }
 
   ngOnInit(): void {
     const linkColor = document.querySelectorAll('.nav-link');
@@ -23,4 +21,12 @@ export class MenuComponent implements OnInit{
       })
     })
   }
+
+  logout() {
+    localStorage.removeItem('token')
+    window.location.reload();
+
+  }
+
+
 }
